@@ -91,6 +91,10 @@ def multiply(a, b):
     return a * b
 
 
+def divide(a, b):
+    return a / b
+
+
 def calculate(*args, **kwargs):
     if 'add' == kwargs['operation']:
         return args[0] + args[1]
@@ -99,7 +103,10 @@ def calculate(*args, **kwargs):
 
 
 def calculate_v2(func, *args):
-    return func(*args)
+    if func.__name__ in ['add', 'subtract', 'multiply']:
+        return func(*args)
+    else:
+        raise NotImplementedError(f'calculate_v2 tool does not support execution for {func.__name__} function')
 
 
 if __name__ == '__main__':
@@ -115,6 +122,7 @@ if __name__ == '__main__':
     print(calculate_v2(add, 1, 2))
     print(calculate_v2(subtract, 1, 2))
     print(calculate_v2(multiply, 1, 2))
+    # print(calculate_v2(divide, 1, 2))
 
     '''
         Banking Dataset questions
